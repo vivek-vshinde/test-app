@@ -1,0 +1,37 @@
+.table1 {
+    border-spacing: 0;
+    border-collapse: separate;
+    border-radius: 10px;
+    border: 2px solid black;
+    font-size: 28px;
+    font-weight: bolder;
+    background-color: rgb(240, 180, 180);
+}
+
+.table1:after {
+    opacity: 0.5;
+}
+
+.table1 td {
+    width: 40px;
+}
+
+.table1 th:not(:last-child),
+.table1 td:not(:last-child) {
+    border-right: 1px solid grey;
+}
+
+/* Apply a border to the bottom of all but the last row */
+.table1>thead>tr:not(:last-child)>th,
+.table1>thead>tr:not(:last-child)>td,
+.table1>tbody>tr:not(:last-child)>th,
+.table1>tbody>tr:not(:last-child)>td,
+.table1>tfoot>tr:not(:last-child)>th,
+.table1>tfoot>tr:not(:last-child)>td,
+.table1>tr:not(:last-child)>td,
+.table1>tr:not(:last-child)>th,
+.table1>thead:not(:last-child),
+.table1>tbody:not(:last-child),
+.table1>tfoot:not(:last-child) {
+    border-bottom: 1px solid grey;
+}

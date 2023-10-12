@@ -1,0 +1,145 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 bg-light mt-1">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <span class="fs-4">Tickets</span>
+            </a>
+            <hr>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal text-center">Tickets</h4>
+                    </div>
+                    <div class="card-body">
+                        <button type="button" class="w-100 btn btn-lg btn-primary fs-3">
+                            Get</button>
+                    </div>
+                    <div>
+                        <button type="button" class="w-100 btn btn-lg btn-primary">
+                            Get Tickets</button>
+                    </div>
+                </div>
+            </div>
+            <!-- <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="#" class="nav-link active" aria-current="page">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                    Orders
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                    Products
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                    Customers
+                </a>
+            </li>
+        </ul> -->
+            <hr>
+        </div>
+        <div class="col bg-light mt-1 mx-1">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <span class="fs-4">Generate Tickets</span>
+            </a>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <form #myform="ngForm" (ngSubmit)="onSubmit(myform)" novalidate>
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <label for="sheettype" class="form-label">Ticket Sheets Type</label>
+                                <select class="form-select" id="sheettype" name="sheettype"
+                                    [(ngModel)]="tinput.sheettype"
+                                    [ngClass]="submitted&&tinput.sheettype==''?'error':''">
+                                    <option value="" selected>Choose...</option>
+                                    <option value="2">12 Tickets Sheet</option>
+                                    <option value="3">18 Tickets Sheet</option>
+                                </select>
+                                <div *ngIf="submitted">
+                                    <div *ngIf="tinput.sheettype==''" class="errortext from-text">Select Type</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <label for="nooftick" class="form-label">No of Sheets</label>
+                                <input type="number" class="form-control" id="noofsheets" name="noofsheets"
+                                    [(ngModel)]="tinput.noofsheets"
+                                    [ngClass]="submitted&&tinput.noofsheets<=0?'error':''">
+                                <div *ngIf="submitted">
+                                    <div *ngIf="tinput.noofsheets<=0" class="errortext from-text">Enter No of Sheets
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="printsrno" name="printsrno"
+                                [(ngModel)]="tinput.printsrno">
+                            <label class="form-check-label" for="printsrno">Do Not Print Serial nos</label>
+                        </div>
+                        <div class="row mb-3" [hidden]="tinput.printsrno">
+                            <div class="col">
+                                <label for="serialnofrom" class="form-label">Serial No. From</label>
+                                <input type="number" class="form-control" id="serialnofrom" name="serialnofrom"
+                                    [(ngModel)]="tinput.serialnofrom">
+                            </div>
+                            <div class="col">
+                                <label for="serialnoto" class="form-label">Serial No. To</label>
+                                <input type="number" class="form-control" id="serialnoto" name="serialnoto"
+                                    [(ngModel)]="tinput.serialnoto">
+                            </div>
+                            <div *ngIf="submitted">
+                                <div *ngIf="(tinput.serialnofrom<=0||tinput.serialnoto<=0)||(tinput.serialnofrom>tinput.serialnofrom)"
+                                    class="erro
+                                    rtext">Enter Invalid Nos
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="title" name="title"
+                                    [(ngModel)]="tinput.title">
+                                <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="logo" class="form-label">Upload Watermark Logo / Image</label>
+                            <input type="file" class="btn btn-secondary form-control" id="logo" name="logo"
+                                [(ngModel)]="tinput.logo">
+                            <div id="emailHelp" class="form-text">Select *.jpg, *.png file size upto 200kb.</div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="savetemp" name="savetemp"
+                                [(ngModel)]="tinput.savetemp">
+                            <label class="form-check-label" for="savetemp">Save as a template</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary form-control">Generate</button>
+                    </form>
+                </div>
+                <div class="col mx-2 bg-white">
+                    <!-- <h1>Hello</h1> -->
+                </div>
+            </div>
+            <hr>
+            <div id="pdfData" class="pdfData">
+
+            </div>
+            <!-- <div>
+                <button type="button" class="btn btn-lg btn-primary fs-3">Get PDF</button>
+            </div> -->
+        </div>
+    </div>
+</div>
